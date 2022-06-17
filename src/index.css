@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.completed-task {
+  text-decoration: line-through;
+  color: #db3545;
+}
+
+.header{
+  color: #000000be;
+}
+
+.mt-6{
+  margin-top:6rem;
+}
+
+.list-group{
+  overFlow:scroll;
+  height: 30rem;
+}
