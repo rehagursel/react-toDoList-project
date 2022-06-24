@@ -5,13 +5,10 @@ import NewTask from "./NewTask";
 const TodosList = ({ dummyList }) => {
   const [allList, setAllList] = useState(dummyList);
   const [selectedList, setSelectedList] = useState("");
-console.log('TodosList')
 
   const addToListHandler = useCallback((newItem) => {
-    
-      setAllList((prevState) => [newItem, ...prevState]);
-    },[]);
-  
+    setAllList((prevState) => [newItem, ...prevState]);
+  }, []);
 
   const deleteItemHandler = (itemId) => {
     setAllList((prevState) => prevState.filter((item) => item.id !== itemId));
@@ -113,7 +110,7 @@ console.log('TodosList')
       </div>
 
       <div className="d-flex flex-column align-items-center mt-5">
-        <ul className="list-group w-100 m-0 p-0 ">{renderList}</ul>
+        <ul className="w-100 m-0 p-0 ">{renderList}</ul>
       </div>
 
       <div className="d-flex justify-content-between gap-5 mt-4">

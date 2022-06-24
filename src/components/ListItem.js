@@ -2,34 +2,32 @@ import { useState } from "react";
 
 const ListItem = (props) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [editInput, setEditInput] = useState('');
+  const [editInput, setEditInput] = useState("");
   const { id, title, onDelete, onEdit, onDone, isDone } = props;
-console.log('listItem')
+
   const deleteHandler = () => {
     onDelete(id);
   };
 
-  
   const doneHandler = () => {
-     onDone(id);
+    onDone(id);
   };
 
   const editHandler = () => {
     setIsEdit((prevState) => !prevState);
   };
 
-  const onEditChangeHandler = (e) => {
+  const editChangeHandler = (e) => {
     setEditInput(e.target.value);
   };
 
   const editItemTitleHandler = (e) => {
-      e.preventDefault();
-      
-      onEdit(id, editInput)
-      setIsEdit((prevState) => !prevState);
-      setEditInput('')
-  }
-  
+    e.preventDefault();
+
+    onEdit(id, editInput);
+    setIsEdit((prevState) => !prevState);
+    setEditInput("");
+  };
 
   return (
     <li className="list-group-item m-0 p-0 border-0">
@@ -40,12 +38,13 @@ console.log('listItem')
             className="form-control py-3"
             placeholder="Enter new title"
             value={editInput}
-          onChange={onEditChangeHandler}
+            onChange={editChangeHandler}
           />
           <button
-            onClick={editItemTitleHandler} className="btn btn-info btn-lg "
+            onClick={editItemTitleHandler}
+            className="btn btn-info btn-lg "
           >
-            {`${editInput==='' ? 'Cancel' : 'Edit task'}`}
+            {`${editInput === "" ? "Cancel" : "Edit task"}`}
           </button>
         </form>
       )}

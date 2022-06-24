@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import TodosList from "./components/TodosList";
 
-const dumyList = [
+/* const dumyList = [
   {
     id: "1",
     title: "New Side Project",
@@ -23,47 +23,37 @@ const dumyList = [
     title: "Family Visit",
     isDone: false,
   },
-];
-
-
-
+]; */
 
 function App() {
   const [renderList, setRenderList] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
-  console.log("App")
-
   const fetchData = useCallback(async () => {
-    
-   const response = await fetch("https://todolist-adc62-default-rtdb.firebaseio.com/todoList.json")
-   if(!response.ok){
-     throw new Error('Something went wrong')
-   }
-          const responseData = await response.json()
-          
-            const loadedTodos = [];
+    const response = await fetch(
+      "https://todolist-adc62-default-rtdb.firebaseio.com/todoList.json"
+    );
+    if (!response.ok) {
+      throw new Error("Something went wrong");
+    }
+    const responseData = await response.json();
 
-            for (const key in responseData) {
-              loadedTodos.push({
-                id: responseData[key].id,
-                title: responseData[key].title,
-                isDone: responseData[key].isDone,
-              });
-            }
-    
-            console.log("loaded", loadedTodos);
-            
-            if(loadedTodos){
-              setRenderList(loadedTodos);
-              setIsLoading(false);
-            }
-        
-          
-    
-    },[])
+    const loadedTodos = [];
 
+    for (const key in responseData) {
+      loadedTodos.push({
+        id: responseData[key].id,
+        title: responseData[key].title,
+        isDone: responseData[key].isDone,
+      });
+    }
+
+    if (loadedTodos) {
+      setRenderList(loadedTodos);
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     fetchData().catch((error) => {
@@ -72,15 +62,14 @@ function App() {
     });
   }, [fetchData]);
 
-if(isLoading){
-  return <p className="mt-5 text-center" >Loading...</p> 
-}
+  if (isLoading) {
+    return <p className="mt-5 text-center">Loading...</p>;
+  }
 
-if(error){
-  return <p className="mt-5 text-center">{error}</p>
-}
+  if (error) {
+    return <p className="mt-5 text-center">{error}</p>;
+  }
 
-  console.log("props");
   return (
     <div className="container mt-6">
       <TodosList dummyList={renderList} />
