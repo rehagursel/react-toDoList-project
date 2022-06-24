@@ -1,6 +1,6 @@
 # React-ToDo-List-Study
 
-ToDoList Study Project (Baootstrap for styling)
+ToDoList Study Project (Bootstrap for styling)
 
 ## Technologies
 
